@@ -8,23 +8,23 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset('stlyesheets/all.min.css')}}">
+  <link rel="stylesheet" href="{{asset('/css/all.min.css')}}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="{{asset('stlyesheets/tempusdominus-bootstrap-4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/tempusdominus-bootstrap-4.min.css')}}">
   <!-- iCheck -->
-  <link rel="stylesheet" href="{{asset('stlyesheets/icheck-bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/icheck-bootstrap.min.css')}}">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="{{asset('stlyesheets/jqvmap.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/jqvmap.min.css')}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('stlyesheets/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{asset('stlyesheets/OverlayScrollbars.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/OverlayScrollbars.min.css')}}">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="{{asset('stlyesheets/daterangepicker.css')}}">
+  <link rel="stylesheet" href="{{asset('css/daterangepicker.css')}}">
   <!-- summernote -->
-  <link rel="stylesheet" href="{{asset('stlyesheets/summernote-bs4.css')}}">
+  <link rel="stylesheet" href="{{asset('css/summernote-bs4.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -114,56 +114,6 @@
                 </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{ URL::to('/owner') }}" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-                <p>
-                  Owner
-                </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ URL::to('/agent') }}" class="nav-link">
-                <i class="nav-icon fas fa-users"></i>
-                <p>
-                  Users
-                </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ URL::to('/tempBook') }}" class="nav-link">
-                <i class="nav-icon fab fa-firstdraft"></i>
-                <p>
-                  Temp Book
-                </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ URL::to('/customer') }}" class="nav-link">
-              <i class="nav-icon fas fa-address-book"></i>
-                <p>
-                  Ugrai Book
-                </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ URL::to('/cashBook') }}" class="nav-link">
-              <i class="nav-icon fas fa-cash-register"></i>
-                <p>
-                  Cash Book
-                </p>
-            </a>
-          </li>
-    
-          {{-- <li class="nav-item">
-            <a href="{{  URL::to('owner/transactionHistory') }}" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                Owner Transaction
-              </p>
-            </a>
-          </li> --}}
-
           
         </ul>
       </nav>
