@@ -17,7 +17,7 @@ class CreateRegionsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('type')->nullable();
-            $table->unsignedBigInteger('parent_id');
+            $table->unsignedBigInteger('parent_id')->nullable();
 
             $table->foreign('parent_id')->references('id')->on('regions');
             $table->timestamps();
