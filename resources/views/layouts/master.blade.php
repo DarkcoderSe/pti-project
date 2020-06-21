@@ -158,14 +158,8 @@
   $.widget.bridge('uibutton', $.ui.button)
   $(document).ready(function(){
     <?php 
-      if(session('error')){
-        echo "toastr.error('" . session('message') . "')";
-      }else if(session('info')){
-        echo "toastr.info('" . session('message') . "')"; 
-      }else if(session('warning')){
-        echo "toastr.warning('" . session('message') . "')";  
-      }else if(session('success')){
-        echo "toastr.success('" . session('message') . "')";
+      if(session('status')){
+        echo "toastr.".session('status')."('" . session('message') . "')";
       }
     ?>
   });

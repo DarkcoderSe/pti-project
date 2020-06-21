@@ -21,6 +21,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Route::prefix('region')->middleware('auth')->group(function(){
+    Route::get('/', 'RegionController@index');
+    Route::get('/create', 'RegionController@create');
+    Route::get('/edit/{id}', 'RegionController@edit');
+    Route::get('/delete/{id}', 'RegionController@delete');
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::post('/submit', 'RegionController@submit');
+    Route::post('/update', 'RegionController@update');
+});
