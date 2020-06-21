@@ -10,7 +10,6 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('/css/all.min.css')}}">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="{{asset('css/tempusdominus-bootstrap-4.min.css')}}">
   <!-- iCheck -->
@@ -100,17 +99,25 @@
                with font-awesome or any oth er icon font library -->
           <li class="nav-item has-treeview">
             <a href="{{ URL::to('/home') }} " class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+       
               <p>
                 Dashboard
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ URL::to('/provider') }}" class="nav-link">
-                <i class="nav-icon fas fa-users"></i>
+            <a href="{{ URL::to('/region') }}" class="nav-link">
+         
                 <p>
-                  Providers
+                  Regions
+                </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ URL::to('/person') }}" class="nav-link">
+         
+                <p>
+                  People
                 </p>
             </a>
           </li>
