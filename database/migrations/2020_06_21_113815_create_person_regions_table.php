@@ -15,6 +15,10 @@ class CreatePersonRegionsTable extends Migration
     {
         Schema::create('person_regions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('person_id');
+            $table->unsignedBigInteger('region_id');
+            $table->foreign('person_id')->references('id')->on('people');
+            $table->foreign('region_id')->references('id')->on('regions');
             $table->timestamps();
         });
     }
