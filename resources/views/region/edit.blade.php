@@ -60,7 +60,16 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Type</label>
-                                <input type="text" name="type" class="form-control" value="{{ $region->type }}" required>
+                                <select name="type" class="custom-select">
+                                    <option value="{{ $region->type }}">{{ $region->type }} - SELCTED </option>
+                                    <option value="Country">Country</option>
+                                    <option value="Province">Province</option>
+                                    <option value="Division">Division</option>
+                                    <option value="District">District</option>
+                                    <option value="Tehsil">Tehsil</option>
+                                    <option value="Union Council">Union Council</option>
+
+                                </select>
                                 @if($errors->any('type'))
                                 <span class="small text-danger">
                                     {{ $errors->first('type') }}

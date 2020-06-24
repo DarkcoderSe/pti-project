@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -29,4 +29,16 @@ Route::prefix('region')->middleware('auth')->group(function(){
 
     Route::post('/submit', 'RegionController@submit');
     Route::post('/update', 'RegionController@update');
+
+    Route::get('/find/{id}', 'RegionController@find');
+});
+
+Route::prefix('person')->middleware('auth')->group(function(){
+    Route::get('/', 'PersonController@index');
+    Route::get('/create', 'PersonController@create');
+    Route::get('/edit/{id}', 'PersonController@edit');
+    Route::get('/delete/{id}', 'PersonController@delete');
+
+    Route::post('/submit', 'PersonController@submit');
+    Route::post('/update', 'PersonController@update');
 });

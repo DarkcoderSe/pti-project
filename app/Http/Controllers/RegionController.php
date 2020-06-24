@@ -98,5 +98,16 @@ class RegionController extends Controller
         ]);
     }
 
+    public function find($id){
+        try {
+            $region = Region::with('Childs')->findOrFail($id);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => '404 Not found'
+            ], 404);
+        }
+
+        return response()->json($region, 200);
+    }
 
 }
