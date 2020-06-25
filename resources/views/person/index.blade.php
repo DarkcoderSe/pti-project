@@ -5,14 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header p-1">
                     <div class="row">
                         <div class="col-md-4">
                             <a href="{{ URL::to('/person/create') }} " class="btn btn-success">
                                 Add new Person
                             </a>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 text-center">
                             <h4>
                                 People
                             </h4>
@@ -24,8 +24,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <table class="table table-striped">
+                <div class="card-body p-0">
+                    <table class="table table-striped m-0">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -43,6 +43,12 @@
                                     <a href="{{ URL::to('/person/edit', $person->id) }} ">
                                         {{ $person->name }} {{ $person->father_name }}
                                     </a>
+                                    @php 
+                                        $personRegion = $person->Regions->first();
+                                    @endphp 
+                                    <div class="small text-secondary">
+                                        {{ $personRegion->rank }} &bull; {{ $personRegion->Region->name }}
+                                    </div>
                                 </td>
                                 <td>{{ $person->phone_no }} </td>
                                 <td>{{ $person->na_no }} </td>

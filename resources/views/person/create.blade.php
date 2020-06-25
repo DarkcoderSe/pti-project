@@ -61,7 +61,7 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                                 
                                 <div class="form-row">
                                     
-                                    <div class="col-md-6 form-group">
+                                    <div class="col-md-4 form-group">
                                         <label>Name</label>
                                         <input type="text" name="name" class="form-control" required>
                                         @if($errors->any('name'))
@@ -70,12 +70,22 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                                         </span>
                                         @endif
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label>Father Name</label>
                                         <input type="text" name="fatherName" class="form-control" required>
                                         @if($errors->any('fatherName'))
                                         <span class="small text-danger">
                                             {{ $errors->first('fatherName') }}
+                                        </span>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>Rank</label>
+                                        <input type="text" name="rank" class="form-control" required>
+                                        @if($errors->any('rank'))
+                                        <span class="small text-danger">
+                                            {{ $errors->first('rank') }}
                                         </span>
                                         @endif
                                     </div>

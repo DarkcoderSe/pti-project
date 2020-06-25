@@ -25,17 +25,24 @@ class PersonController extends Controller
     }
 
     public function edit($id){
-        $regions = Region::where('parent_id', null)->get();
         try {
             $person = Person::findOrFail($id);
+            // dd($person->Regions->first());
+            $regions = Region::where('type', $person->Regions->first()->Region->type)->get();
+            $parentRegions = Region::where('parent_id', null)->get();
+
         } catch (\Throwable $th) {
             //throw $th;
             abort(404);
         }
 
+        
+
+
         return view('person.edit')->with([
             'person' => $person,
-            'regions' => $regions
+            'regions' => $regions,
+            'parentRegions' => $parentRegions
         ]);
     }
 
@@ -45,7 +52,7 @@ class PersonController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with([
                 'status' => 'error',
-                'message' => 'This Person is used by some people. try to delete people first'
+                'message' => 'This Person is ranked at some regions. Please delete those region first'
             ]);
         }
 
@@ -64,7 +71,8 @@ class PersonController extends Controller
             'cnic' => 'unique:people|string|required',
             'phone_no' => 'unique:people|string|required',
             'na_no' => 'string|required',
-            'address' => 'nullable|string'
+            'address' => 'nullable|string',
+            'rank' => 'required|string'
         ]);
 
         DB::beginTransaction();
@@ -83,6 +91,7 @@ class PersonController extends Controller
             $personRegion = new PersonRegion;
             $personRegion->person_id = $person->id;
             $personRegion->region_id = $req->regionId;
+            $personRegion->rank = $req->rank;
             $personRegion->save();
 
         
@@ -105,7 +114,7 @@ class PersonController extends Controller
         $req->validate([
             'name' => 'required|string',
             'fatherName' => 'nullable|string',
-            // 'regionId' => 'required|integer',
+            'regionId' => 'required|integer',
             'cnic' => 'string|required',
             'phone_no' => 'string|required',
             'na_no' => 'string|required',
@@ -123,6 +132,10 @@ class PersonController extends Controller
             $person->na_no = $req->na_no;
             $person->address = $req->address;
             $person->save();
+
+            $personRegion = PersonRegion::where('person_id', $person->id)->first();
+            $personRegion->region_id = $req->regionId;
+            $personRegion->save();
 
         } catch (\Throwable $th) {
             throw $th;

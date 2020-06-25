@@ -17,6 +17,8 @@ class CreatePersonRegionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('person_id');
             $table->unsignedBigInteger('region_id');
+            $table->string('rank');
+            $table->string('description')->nullable();
             $table->foreign('person_id')->references('id')->on('people');
             $table->foreign('region_id')->references('id')->on('regions');
             $table->timestamps();

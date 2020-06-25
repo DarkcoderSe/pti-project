@@ -27,26 +27,42 @@
 
 @php
 $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Council'];
+$personRegion = $person->Regions->first();
 @endphp 
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3" id="newRegion" style="display: none;">
                             <div class="form-group col-md-12 mt-3">
                                 @php 
                                     $label = "No Region Found. Please add some region first";
-                                    $label = $regions->first();
+                                    $label = $parentRegions->first();
                                 @endphp 
                                 <label> {{ $label->type }} </label>
                                 <select name="" id="{{$label->type}}" class="custom-select">
                                     <option value=""> -- select --</option>
-                                    @foreach($regions as $region)
-                                    <option value="{{ $region->id }}">{{ $region->name }} </option>
+                                    @foreach($parentRegions as $pr)
+                                    <option value="{{ $pr->id }}">{{ $pr->name }} </option>
                                     @endforeach
                                 </select>
                             </div>
                             <div id="selectedRegion">
                                 
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="oldRegion">
+                            <div class="form-group col-md-12 mt-3">
+                               
+                                <label> {{ $personRegion->Region->type }} </label>
+                                <select name="" id="{{$personRegion->Region->type}}" class="custom-select">
+                                    <option value="{{ $personRegion->Region->id }}">{{ $personRegion->Region->name }} - SELECTED </option>
+                                    @foreach($regions as $regionRow)
+                                    <option value="{{ $regionRow->id }}">{{ $regionRow->name }} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="p-2 col-md-11 m-2" style="border-radius: 5px; background-color: #eee;color:#555;">
+                                <a href="#" id="changeParentRegion">Click here</a> if you want to change the parent region!
                             </div>
                         </div>
                         <div class="col-md-9">
@@ -55,13 +71,13 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <input type="hidden" name="personId" value="{{ $person->id }}">
-                                        <input type="hidden" name="regionId" id="regionId">
+                                        <input type="hidden" name="regionId" id="regionId" value="{{$personRegion->Region->id}}">
                                     </div>
                                 </div>
                                 
                                 <div class="form-row">
                                     
-                                    <div class="col-md-6 form-group">
+                                    <div class="col-md-4 form-group">
                                         <label>Name</label>
                                         <input type="text" name="name" class="form-control" value="{{ $person->name }}" required>
                                         @if($errors->any('name'))
@@ -70,12 +86,22 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                                         </span>
                                         @endif
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label>Father Name</label>
                                         <input type="text" name="fatherName" class="form-control" value="{{ $person->father_name }}" required>
                                         @if($errors->any('fatherName'))
                                         <span class="small text-danger">
                                             {{ $errors->first('fatherName') }}
+                                        </span>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>Rank</label>
+                                        <input type="text" name="rank" class="form-control" value="{{ $personRegion->rank }}" required>
+                                        @if($errors->any('rank'))
+                                        <span class="small text-danger">
+                                            {{ $errors->first('rank') }}
                                         </span>
                                         @endif
                                     </div>
@@ -140,6 +166,13 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
 
 @push('script')
 <script>
+
+        $(document).ready(function(){
+            $('#changeParentRegion').on('click', function(){
+                $('#oldRegion').hide();
+                $('#newRegion').show();
+            })
+        });
     
         @foreach($regionArr as $r)
 
