@@ -14,6 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::namespace('Api')->group(function(){
+    Route::prefix('region')->group(function(){
+        Route::get('/', 'RegionController@getAllRegions');
+        Route::get('/{id}', 'RegionController@findRegion');
+    });
+
+    Route::prefix('person')->group(function(){
+        Route::get('/', 'PersonController@getAllPeople');
+        Route::get('/{id}', 'PersonController@findPerson');
+    });
 });
