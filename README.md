@@ -1,6 +1,6 @@
 ## Pakistan Tehreek Insaaf Project Admin Panel
 
-## Requirements
+### Requirements
 
 - MySQL 
 - Composer
