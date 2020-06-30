@@ -1,6 +1,13 @@
-### Pakistan Tehreek Insaaf Project Admin Panel
+## Pakistan Tehreek Insaaf Project Admin Panel
 
-## How to install project ?
+## Requirements
+
+- MySQL 
+- Composer
+- PHP v7+
+
+
+### How to install project ?
 
 - clone this repo
 - `` composer install ``
