@@ -17,10 +17,17 @@ class CreatePeopleTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('father_name')->nullable();
-            $table->string('cnic')->unique();
+            $table->date('dob')->nullable();
+            $table->bigInteger('age')->nullable();
+            // $table->string('cnic')->unique();
             $table->string('phone_no')->unique();
-            $table->string('na_no')->nullable();
-            $table->text('address')->nullable();
+            // $table->string('na_no')->nullable();
+            $table->string('education')->nullable();
+            $table->text('political_profile')->nullable();
+            $table->string('fb_link')->nullable();
+            $table->unsignedBigInteger('committee_id');
+            $table->foreign('committee_id')->references('id')->on('committees');
+            // $table->text('address')->nullable();
             $table->timestamps();
         });
     }

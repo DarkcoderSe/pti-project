@@ -60,6 +60,19 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                                 </div>
                                 
                                 <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>Committee</label>
+                                        <select name="committee_id" class="custom-select" required>
+                                            <option value=""> -- select -- </option>
+                                            @foreach($committees as $committee)
+                                            <option value="{{ $committee->id }}">
+                                                {{ $committee->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
                                     
                                     <div class="col-md-4 form-group">
                                         <label>Name</label>
@@ -81,7 +94,7 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label>Rank</label>
+                                        <label>Position Applied for</label>
                                         <input type="text" name="rank" class="form-control" required>
                                         @if($errors->any('rank'))
                                         <span class="small text-danger">
@@ -94,17 +107,27 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                                 <div class="form-row">
                                     
                                     <div class="col-md-4 form-group">
-                                        <label>CNIC</label>
-                                        <input type="text" name="cnic" class="form-control" required>
-                                        @if($errors->any('cnic'))
+                                        <label>D/O/B</label>
+                                        <input type="text" name="dob" class="form-control" required>
+                                        @if($errors->any('dob'))
                                         <span class="small text-danger">
-                                            {{ $errors->first('cnic') }}
+                                            {{ $errors->first('dob') }}
+                                        </span>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>Age</label>
+                                        <input type="text" name="age" class="form-control" required>
+                                        @if($errors->any('age'))
+                                        <span class="small text-danger">
+                                            {{ $errors->first('age') }}
                                         </span>
                                         @endif
                                     </div>
         
                                     <div class="form-group col-md-4">
-                                        <label>Phone No.</label>
+                                        <label>Contact No.</label>
                                         <input type="text" name="phone_no" class="form-control" required>
                                         @if($errors->any('phone_no'))
                                         <span class="small text-danger">
@@ -113,22 +136,27 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                                         @endif
                                     </div>
         
-        
-                                    <div class="form-group col-md-4">
-                                        <label>National Assembly No.</label>
-                                        <input type="text" name="na_no" class="form-control" required>
-                                        @if($errors->any('na_no'))
-                                        <span class="small text-danger">
-                                            {{ $errors->first('na_no') }}
-                                        </span>
-                                        @endif
-                                    </div>
-        
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label>Address</label>
-                                        <textarea name="address" rows="4" class="form-control"></textarea>
+                                        <label>Facebook Profile</label>
+                                        <input type="text" name="fb_link" class="form-contol">
+                                        @if($errors->any('fb_link'))
+                                        <span class="small text-danger">
+                                            {{ $errors->first('fb_link') }}
+                                        </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>Political Profile</label>
+                                        <textarea name="political_profile" rows="4" class="form-control"></textarea>
+                                        @if($errors->any('political_profile'))
+                                        <span class="small text-danger">
+                                            {{ $errors->first('political_profile') }}
+                                        </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-success">
