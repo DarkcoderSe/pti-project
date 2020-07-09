@@ -114,6 +114,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ URL::to('/committee') }}" class="nav-link">
+         
+                <p>
+                  Committee
+                </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ URL::to('/person') }}" class="nav-link">
          
                 <p>

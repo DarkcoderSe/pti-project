@@ -34,6 +34,18 @@ Route::prefix('region')->middleware('auth')->group(function(){
     Route::get('/find/{id}', 'RegionController@find');
 });
 
+Route::prefix('committee')->middleware('auth')->group(function(){
+    Route::get('/', 'CommitteeController@index');
+    Route::get('/create', 'CommitteeController@create');
+    Route::get('/edit/{id}', 'CommitteeController@edit');
+    Route::get('/delete/{id}', 'CommitteeController@delete');
+
+    Route::post('/submit', 'CommitteeController@submit');
+    Route::post('/update', 'CommitteeController@update');
+
+    // Route::get('/find/{id}', 'CommitteeController@find');
+});
+
 Route::prefix('person')->middleware('auth')->group(function(){
     Route::get('/', 'PersonController@index');
     Route::get('/create', 'PersonController@create');
