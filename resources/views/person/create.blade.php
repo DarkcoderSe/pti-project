@@ -108,7 +108,7 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                                     
                                     <div class="col-md-4 form-group">
                                         <label>D/O/B</label>
-                                        <input type="text" name="dob" class="form-control" required>
+                                        <input type="date" name="dob" class="form-control" required>
                                         @if($errors->any('dob'))
                                         <span class="small text-danger">
                                             {{ $errors->first('dob') }}
@@ -140,7 +140,7 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label>Facebook Profile</label>
-                                        <input type="text" name="fb_link" class="form-contol">
+                                        <input type="text" name="fb_link" class="form-control">
                                         @if($errors->any('fb_link'))
                                         <span class="small text-danger">
                                             {{ $errors->first('fb_link') }}

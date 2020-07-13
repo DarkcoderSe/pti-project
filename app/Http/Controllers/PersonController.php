@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Person;
 use App\Region;
 use App\PersonRegion;
+use App\Committee;
 use DB;
 
 class PersonController extends Controller
@@ -19,8 +20,10 @@ class PersonController extends Controller
 
     public function create(){
         $regions = Region::where('parent_id', null)->get();
+        $committees = Committee::all();
         return view('person.create')->with([
-            'regions' => $regions
+            'regions' => $regions,
+            'committees' => $committees
         ]);
     }
 
