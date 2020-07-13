@@ -104,10 +104,10 @@ class PersonController extends Controller
             $person->committee_id = $req->committee_id;
             // $person->address = $req->address;
             $person->political_profile = $req->political_profile;
-            if ($request->hasFile('picture')) {
+            if ($req->hasFile('picture')) {
 
 
-                $image = $request->file('picture');
+                $image = $req->file('picture');
                 $name = time().'.'.$image->getClientOriginalExtension();
                 $destinationPath = public_path('/profile_pictures');
                 $image->move($destinationPath, $name);
@@ -169,14 +169,14 @@ class PersonController extends Controller
             $person->committee_id = $req->committee_id;
             $person->fb_link = $req->fb_link;
             $person->political_profile = $req->political_profile;
-            if ($request->hasFile('picture')) {
+            if ($req->hasFile('picture')) {
 
                 $deleteOldImagePath = "profile_pictures/" . $person->picture;
                 if(File::exists($deleteOldImagePath)){
                     File::delete($deleteOldImagePath);
                 }
     
-                $image = $request->file('picture');
+                $image = $req->file('picture');
                 $name = time().'.'.$image->getClientOriginalExtension();
                 $destinationPath = public_path('/profile_pictures');
                 $image->move($destinationPath, $name);

@@ -28,6 +28,7 @@
                     <table class="table table-striped m-0">
                         <thead>
                             <tr>
+                                <th>Pciture</th>
                                 <th>Name</th>
                                 <th>Phone No.</th>
                                 <th>Committee</th>
@@ -39,6 +40,9 @@
                         <tbody>
                             @foreach($persons as $person)
                             <tr>
+                                <td>
+                                    <img src="{{ URL::to('profile_pictures', $person->picture ? $person->picture : '/404.png' ) }} " alt="loading.." style="width: 40px;">
+                                </td>
                                 <td>
                                     <a href="{{ URL::to('/person/edit', $person->id) }} ">
                                         {{ $person->name }} {{ $person->father_name }}
