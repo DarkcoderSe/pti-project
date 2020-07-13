@@ -50,7 +50,7 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                             </div>
                         </div>
                         <div class="col-md-9">
-                            <form action="{{ URL::to('person/submit') }} " method="post" >
+                            <form action="{{ URL::to('person/submit') }} " method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
@@ -60,7 +60,7 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                                 </div>
                                 
                                 <div class="form-row">
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-8">
                                         <label>Committee</label>
                                         <select name="committee_id" class="custom-select" required>
                                             <option value=""> -- select -- </option>
@@ -70,6 +70,16 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                                             </option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-4">
+                                        <label>Position Applied for</label>
+                                        <input type="text" name="rank" class="form-control" required>
+                                        @if($errors->any('rank'))
+                                        <span class="small text-danger">
+                                            {{ $errors->first('rank') }}
+                                        </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -93,15 +103,17 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                                         @endif
                                     </div>
 
+                                    
                                     <div class="form-group col-md-4">
-                                        <label>Position Applied for</label>
-                                        <input type="text" name="rank" class="form-control" required>
-                                        @if($errors->any('rank'))
+                                        <label>Profile Picture</label>
+                                        <input type="file" name="picture" class="form-control" required>
+                                        @if($errors->any('picture'))
                                         <span class="small text-danger">
-                                            {{ $errors->first('rank') }}
+                                            {{ $errors->first('picture') }}
                                         </span>
                                         @endif
                                     </div>
+
                                 </div>
         
                                 <div class="form-row">
@@ -144,6 +156,17 @@ $regionArr = ['Country', 'Province', 'Division', 'District', 'Tehsil', 'Union-Co
                                         @if($errors->any('fb_link'))
                                         <span class="small text-danger">
                                             {{ $errors->first('fb_link') }}
+                                        </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>Education</label>
+                                        <input type="text" name="education" class="form-control">
+                                        @if($errors->any('education'))
+                                        <span class="small text-danger">
+                                            {{ $errors->first('education') }}
                                         </span>
                                         @endif
                                     </div>

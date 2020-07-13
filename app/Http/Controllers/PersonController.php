@@ -8,6 +8,7 @@ use App\Region;
 use App\PersonRegion;
 use App\Committee;
 use DB;
+use File;
 
 class PersonController extends Controller
 {
@@ -31,6 +32,7 @@ class PersonController extends Controller
         try {
             $person = Person::findOrFail($id);
             // dd($person->Regions->first());
+            $committees = Committee::all();
             $regions = Region::where('type', $person->Regions->first()->Region->type)->get();
             $parentRegions = Region::where('parent_id', null)->get();
 
@@ -45,7 +47,8 @@ class PersonController extends Controller
         return view('person.edit')->with([
             'person' => $person,
             'regions' => $regions,
-            'parentRegions' => $parentRegions
+            'parentRegions' => $parentRegions,
+            'committees' => $committees
         ]);
     }
 
@@ -71,11 +74,17 @@ class PersonController extends Controller
             'name' => 'required|string',
             'fatherName' => 'nullable|string',
             'regionId' => 'required|integer',
-            'cnic' => 'unique:people|string|required',
+            // 'cnic' => 'unique:people|string|required',
             'phone_no' => 'unique:people|string|required',
-            'na_no' => 'string|required',
-            'address' => 'nullable|string',
-            'rank' => 'required|string'
+            // 'na_no' => 'string|required',
+            // 'address' => 'nullable|string',
+            'rank' => 'required|string',
+            'education' => 'nullable|string',
+            'fb_link' => 'nullable|string',
+            'dob' => 'nullable|date',
+            'age' => 'nullable|integer',
+            'committee_id' => 'required|integer',
+            'picture' => 'nullable|mimes:jpg,png,jpeg'
         ]);
 
         DB::beginTransaction();
@@ -85,10 +94,25 @@ class PersonController extends Controller
             $person->name = $req->name;
             $person->father_name = $req->fatherName;
             // $person->region_id = $req->regionId;
-            $person->cnic = $req->cnic;
+            // $person->cnic = $req->cnic;
             $person->phone_no = $req->phone_no;
-            $person->na_no = $req->na_no;
-            $person->address = $req->address;
+            // $person->na_no = $req->na_no;
+            $person->fb_link = $req->fb_link;
+            $person->education = $req->education;
+            $person->dob = $req->dob;
+            $person->age = $req->age;
+            $person->committee_id = $req->committee_id;
+            // $person->address = $req->address;
+            $person->political_profile = $req->political_profile;
+            if ($request->hasFile('picture')) {
+
+
+                $image = $request->file('picture');
+                $name = time().'.'.$image->getClientOriginalExtension();
+                $destinationPath = public_path('/profile_pictures');
+                $image->move($destinationPath, $name);
+                $person->picture = $name;
+            }
             $person->save();
 
             $personRegion = new PersonRegion;
@@ -96,12 +120,11 @@ class PersonController extends Controller
             $personRegion->region_id = $req->regionId;
             $personRegion->rank = $req->rank;
             $personRegion->save();
-
         
         } catch (\Throwable $th) {
-            // throw $th;
-            DB::rollback();
-            abort(500);
+            dd($th);
+            // DB::rollback();
+            // abort(500);
         }
 
         DB::commit();
@@ -118,11 +141,17 @@ class PersonController extends Controller
             'name' => 'required|string',
             'fatherName' => 'nullable|string',
             'regionId' => 'required|integer',
-            'cnic' => 'string|required',
+            // 'cnic' => 'string|required',
             'phone_no' => 'string|required',
-            'na_no' => 'string|required',
-            'address' => 'nullable|string',
-            'personId' => 'required|integer'
+            // 'na_no' => 'string|required',
+            // 'address' => 'nullable|string',
+            'personId' => 'required|integer',
+            'education' => 'nullable|string',
+            'fb_link' => 'nullable|string',
+            'dob' => 'nullable|date',
+            'age' => 'nullable|integer',
+            'committee_id' => 'required|integer',
+            'picture' => 'nullable|mimes:jpg,png,jpeg'
         ]);
         DB::beginTransaction();
         try {
@@ -130,10 +159,30 @@ class PersonController extends Controller
             $person->name = $req->name;
             $person->father_name = $req->fatherName;
             // $person->region_id = $req->regionId;
-            $person->cnic = $req->cnic;
+            // $person->cnic = $req->cnic;
             $person->phone_no = $req->phone_no;
-            $person->na_no = $req->na_no;
-            $person->address = $req->address;
+            // $person->na_no = $req->na_no;
+            // $person->address = $req->address;
+            $person->education = $req->education;
+            $person->dob = $req->dob;
+            $person->age = $req->age;
+            $person->committee_id = $req->committee_id;
+            $person->fb_link = $req->fb_link;
+            $person->political_profile = $req->political_profile;
+            if ($request->hasFile('picture')) {
+
+                $deleteOldImagePath = "profile_pictures/" . $person->picture;
+                if(File::exists($deleteOldImagePath)){
+                    File::delete($deleteOldImagePath);
+                }
+    
+                $image = $request->file('picture');
+                $name = time().'.'.$image->getClientOriginalExtension();
+                $destinationPath = public_path('/profile_pictures');
+                $image->move($destinationPath, $name);
+                $person->picture = $name;
+            }
+
             $person->save();
 
             $personRegion = PersonRegion::where('person_id', $person->id)->first();

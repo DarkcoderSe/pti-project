@@ -74,6 +74,30 @@ $personRegion = $person->Regions->first();
                                         <input type="hidden" name="regionId" id="regionId" value="{{$personRegion->Region->id}}">
                                     </div>
                                 </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-8">
+                                        <label>Committee</label>
+                                        <select name="committee_id" class="custom-select" required>
+                                            <option value="{{ $person->Committee->id }} "> {{$person->Committee->name }} - SELECTED </option>
+                                            @foreach($committees as $committee)
+                                            <option value="{{ $committee->id }}">
+                                                {{ $committee->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-4">
+                                        <label>Position Applied for</label>
+                                        <input type="text" name="rank" class="form-control" value="{{ $personRegion->rank }}" required>
+                                        @if($errors->any('rank'))
+                                        <span class="small text-danger">
+                                            {{ $errors->first('rank') }}
+                                        </span>
+                                        @endif
+                                    </div>
+                                </div>
                                 
                                 <div class="form-row">
                                     
@@ -97,19 +121,20 @@ $personRegion = $person->Regions->first();
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label>Rank</label>
-                                        <input type="text" name="rank" class="form-control" value="{{ $personRegion->rank }}" required>
-                                        @if($errors->any('rank'))
+                                        <label>Profile Picture</label>
+                                        <input type="file" name="picture" class="form-control" required>
+                                        @if($errors->any('picture'))
                                         <span class="small text-danger">
-                                            {{ $errors->first('rank') }}
+                                            {{ $errors->first('picture') }}
                                         </span>
                                         @endif
                                     </div>
+
                                 </div>
         
                                 <div class="form-row">
                                     
-                                    <div class="col-md-4 form-group">
+                                    {{-- <div class="col-md-4 form-group">
                                         <label>CNIC</label>
                                         <input type="text" name="cnic" class="form-control" value="{{ $person->cnic }}" required>
                                         @if($errors->any('cnic'))
@@ -117,7 +142,28 @@ $personRegion = $person->Regions->first();
                                             {{ $errors->first('cnic') }}
                                         </span>
                                         @endif
+                                    </div> --}}
+
+                                    <div class="col-md-4 form-group">
+                                        <label>D/O/B</label>
+                                        <input type="date" name="dob" class="form-control" value="{{ $person->dob }}" required>
+                                        @if($errors->any('dob'))
+                                        <span class="small text-danger">
+                                            {{ $errors->first('dob') }}
+                                        </span>
+                                        @endif
                                     </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>Age</label>
+                                        <input type="text" name="age" class="form-control" value="{{ $person->age }}" required>
+                                        @if($errors->any('age'))
+                                        <span class="small text-danger">
+                                            {{ $errors->first('age') }}
+                                        </span>
+                                        @endif
+                                    </div>
+        
         
                                     <div class="form-group col-md-4">
                                         <label>Phone No.</label>
@@ -130,7 +176,7 @@ $personRegion = $person->Regions->first();
                                     </div>
         
         
-                                    <div class="form-group col-md-4">
+                                    {{-- <div class="form-group col-md-4">
                                         <label>National Assembly No.</label>
                                         <input type="text" name="na_no" class="form-control" value="{{ $person->na_no }}" required>
                                         @if($errors->any('na_no'))
@@ -139,12 +185,36 @@ $personRegion = $person->Regions->first();
                                         </span>
                                         @endif
                                     </div>
-        
+         --}}
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>Facebook Profile</label>
+                                        <input type="text" name="fb_link" class="form-control" value="{{ $person->fb_link }}">
+                                        @if($errors->any('fb_link'))
+                                        <span class="small text-danger">
+                                            {{ $errors->first('fb_link') }}
+                                        </span>
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label>Address</label>
-                                        <textarea name="address" rows="4" class="form-control">{{ $person->address }}</textarea>
+                                        <label>Education</label>
+                                        <input type="text" name="education" class="form-control" value="{{ $person->education }}">
+                                        @if($errors->any('education'))
+                                        <span class="small text-danger">
+                                            {{ $errors->first('education') }}
+                                        </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>Political Profile</label>
+                                        <textarea name="political_profile" rows="4" class="form-control">{{ $person->political_profile }}</textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-success">

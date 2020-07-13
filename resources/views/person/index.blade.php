@@ -30,7 +30,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Phone No.</th>
-                                <th>NA No.</th>
+                                <th>Committee</th>
                                 <th>
                                     Action
                                 </th>
@@ -51,7 +51,7 @@
                                     </div>
                                 </td>
                                 <td>{{ $person->phone_no }} </td>
-                                <td>{{ $person->na_no }} </td>
+                                <td>{{ $person->Committee->name }} </td>
                                 <td>
                                     <a href="{{ URL::to('/person/delete', $person->id) }} " class="btn btn-danger btn-sm">
                                         Delete

@@ -24,6 +24,7 @@ class CreatePeopleTable extends Migration
             // $table->string('na_no')->nullable();
             $table->string('education')->nullable();
             $table->text('political_profile')->nullable();
+            $table->string('picture')->nullable();
             $table->string('fb_link')->nullable();
             $table->unsignedBigInteger('committee_id');
             $table->foreign('committee_id')->references('id')->on('committees');
